@@ -10,13 +10,18 @@ model = TeachableMachine(model_path="keras_model.h5", labels_file_path="labels.t
 
 CONSTANT_IMAGE_FILE = "static/screenshot.jpg"
 cap = cv.VideoCapture(0)
-
+time.sleep(1) 
+if not cap.isOpened():
+    print("Error: Could not open webcam.")
 
 def start_video_capture():
     _, img = cap.read()
 
-    # Overwrite the existing screenshot file with the new frame
-    cv.imwrite(CONSTANT_IMAGE_FILE, img)
+    if img is not None and img.any() and img.shape[0] > 0 and img.shape[1] > 0:
+        cv.imwrite(CONSTANT_IMAGE_FILE, img)
+    # Continue with classification
+    else:
+        print("Error: Captured frame is empty or has invalid dimensions.")
 
     result = model.classify_image(CONSTANT_IMAGE_FILE)
     class_name = result["class_name"]
