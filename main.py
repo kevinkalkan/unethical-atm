@@ -46,7 +46,7 @@ def classify():
 def stop():
     stop_video_capture()
     cv.destroyAllWindows()
-    return redirect('/')
+    return redirect('/offers')
 
 
 @app.route('/survey')
@@ -58,6 +58,11 @@ def survey():
 def screen():
     return render_template('screen.html')
 
+@app.route('/offers')
+def offers():
+    # Assume 'data' is the variable you want to pass to the template
+    class_name = start_video_capture()  # Call your function to get the class_name
+    return render_template('offers.html', class_name=class_name)
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -7,9 +7,7 @@
     <title>ATM App</title>
     <!-- You can include additional CSS stylesheets or other meta tags here -->
     <style>
-        .visible {
-        display: inline-block !important;
-    }
+
     </style>
 </head>
 
@@ -23,8 +21,8 @@
         <!-- Add a video element to display the camera feed -->
         <video id="cameraFeed" width="640" height="480" autoplay></video>
 
-        <button onclick="startVideoCapture()">Start Video Capture</button>
-        <button id="stopButton" onclick="stopVideoCapture()" style="display: none;">Confirm</button>
+        <button onclick="startVideoCapture()">Take a Picture</button>
+        <button onclick="stopVideoCapture()">Confirm</button>
         <p id="responseText"></p>
 
         <!-- Add a loading indicator -->
@@ -46,7 +44,6 @@
             const videoElement = document.getElementById('cameraFeed');
             const loadingIndicator = document.getElementById('loadingIndicator');
             const responseText = document.getElementById('responseText');
-            const stopButton = document.getElementById('stopButton');
     
             // Show loading indicator
             loadingIndicator.style.display = 'block';
@@ -62,8 +59,6 @@
                             console.log('Video dimensions:', videoElement.videoWidth, 'x', videoElement.videoHeight);
                             // Hide loading indicator after video metadata is loaded
                             loadingIndicator.style.display = 'none';
-                            // Make the "Stop Video Capture" button visible
-                            stopButton.style.visibility = 'visible';
                         };
                     })
                     .catch(error => {
@@ -94,12 +89,26 @@
                 .then(data => {
                     console.log('Received data:', data);
                     data = data.trim();
-                    if (data.toLowerCase() === 'dogs') {
-                        responseText.textContent = `I'm a ${data}, woof woof!`;
-                        // Add more actions specific to the 'dogs' case if needed
-                    } else {
-                        responseText.textContent = `I'm not a dog, but I'm still awesome!`;
-                        // Handle other cases if needed
+                    // Save the class_name in localStorage
+                    localStorage.setItem('class_name', data);
+
+                    switch (data.toLowerCase()) {
+                        case 'dogs':
+                            responseText.textContent = `I'm a ${data}, woof woof!`;
+                            // Add more actions specific to the 'dogs' case if needed
+                            break;
+                        case 'hats':
+                            responseText.textContent = `I'm a ${data}, very cool indeed!`;
+                            // Add more actions specific to the 'dogs' case if needed
+                            break;
+                        case 'clouds':
+                            responseText.textContent = `I'm a ${data}, airbending time!`;
+                            // Add more actions specific to the 'dogs' case if needed
+                            break;    
+                        default:
+                            responseText.textContent = `I'm a fucking pistachio? But I'm still awesome!`;
+                            // Handle other cases if needed
+                            break;
                     }
                 })
                 .catch(error => {
@@ -110,22 +119,26 @@
         }
     
         function stopVideoCapture() {
-            // Make a fetch request to the '/stop' route
-            fetch('/stop', {
-                    method: 'GET'
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    // Redirect to the home page after stopping the video capture
-                    window.location.href = '/';
-                })
-                .catch(error => {
-                    console.error('Fetch error:', error);
-                    // Handle the error as needed
-                });
-        }
+    // Make a fetch request to the '/stop' route
+    fetch('/stop', {
+            method: 'GET'
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            // Check if the response indicates success before redirecting
+            return response.text();
+        })
+        .then(data => {
+            // Redirect to the home page after stopping the video capture
+            window.location.href = '/offers';
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+            // Handle the error as needed
+        });
+}
     </script>
     
 

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offers Page</title>
+</head>
+<body>
+
+    <h1>Offers Page</h1>
+
+    <p>This is the class name from the server: <span id="class_name_placeholder"></span></p>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Retrieve the class_name from localStorage
+            const class_name = localStorage.getItem('class_name');
+    
+            // Do something with the class_name (update the DOM, etc.)
+            if (class_name) {
+                document.getElementById('class_name_placeholder').textContent = class_name;
+            }
+        });
+    </script>
+    
+</body>
+</html>
