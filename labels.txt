@@ -1,0 +1,5 @@
+0 Clouds
+1 Covid
+2 Dogs
+3 Hats
+4 Pistachios

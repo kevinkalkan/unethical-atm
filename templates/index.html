@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM App</title>
+    <!-- You can include additional CSS stylesheets or other meta tags here -->
+</head>
+<body>
+    <header>
+        <h1>Welcome to our ATM app!</h1>
+        <p>This app will make your life considerably easier, it will help you connect with others, and it will allow you to spend your money in a meaningful way!</p>
+    </header>
+
+    <main>
+        <button onclick="startVideoCapture()">Start Video Capture</button>
+        <p id="responseText"></p>
+    </main>
+
+    <footer>
+        <!-- You can add a footer with additional information or links -->
+    </footer>
+
+    <!-- You can include additional scripts or links to external scripts here -->
+    <!-- ... (other HTML code) ... -->
+<!-- ... (other HTML code) ... -->
+<script>
+    function startVideoCapture() {
+        fetch('/classify', { method: 'GET' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(data => {
+                console.log('Received data:', data);
+                data = data.trim();
+                    if (data.toLowerCase() === 'dogs') {
+                        document.getElementById('responseText').textContent = `I'm a ${data}, woof woof!`;
+                        // Add more actions specific to the 'dogs' case if needed
+                    }   else {
+                        document.getElementById('responseText').textContent = `I'm not a dog, but I'm still awesome!`;
+                        // Handle other cases if needed
+                    }
+                })
+            .catch(error => {
+                console.error('Fetch error:', error);
+            });
+    }
+</script>
+
+</body>
+</html>
