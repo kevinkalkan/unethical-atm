@@ -21,7 +21,7 @@
         <!-- Add a video element to display the camera feed -->
         <video id="cameraFeed" width="640" height="480" autoplay></video>
 
-        <button onclick="startVideoCapture()">Take a Picture</button>
+        <button id="takePictureButton">Take a Picture</button>
         <button onclick="stopVideoCapture()">Confirm</button>
         <p id="responseText"></p>
 
@@ -40,6 +40,13 @@
     <!-- ... (other HTML code) ... -->
 
     <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+    // This function will be called when the DOM content is loaded
+        const takePictureButton = document.getElementById('takePictureButton');
+
+    // Add an event listener to the "Take a Picture" button
+        takePictureButton.addEventListener('click', startVideoCapture);
+});
         function startVideoCapture() {
             const videoElement = document.getElementById('cameraFeed');
             const loadingIndicator = document.getElementById('loadingIndicator');
@@ -60,6 +67,7 @@
                             // Hide loading indicator after video metadata is loaded
                             loadingIndicator.style.display = 'none';
                         };
+                        videoElement.play();
                     })
                     .catch(error => {
                         console.error('Error accessing the camera:', error);
