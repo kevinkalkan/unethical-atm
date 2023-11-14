@@ -13,8 +13,7 @@
     </header>
 
     <main>
-        <button onclick="startVideoCapture()">Start Video Capture</button>
-        <p id="responseText"></p>
+        <button onclick="redirectToSurvey()">Get Started</button>
     </main>
 
     <footer>
@@ -25,28 +24,9 @@
     <!-- ... (other HTML code) ... -->
 <!-- ... (other HTML code) ... -->
 <script>
-    function startVideoCapture() {
-        fetch('/classify', { method: 'GET' })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.text();
-            })
-            .then(data => {
-                console.log('Received data:', data);
-                data = data.trim();
-                    if (data.toLowerCase() === 'dogs') {
-                        document.getElementById('responseText').textContent = `I'm a ${data}, woof woof!`;
-                        // Add more actions specific to the 'dogs' case if needed
-                    }   else {
-                        document.getElementById('responseText').textContent = `I'm not a dog, but I'm still awesome!`;
-                        // Handle other cases if needed
-                    }
-                })
-            .catch(error => {
-                console.error('Fetch error:', error);
-            });
+    function redirectToSurvey() {
+            // Redirect to the "survey.html" page
+            window.location.href = '/survey';
     }
 </script>
 

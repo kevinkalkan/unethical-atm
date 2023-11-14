@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Survey Form</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link href="https://fonts.googleapis.com/css?family=Quicksand|Roboto" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+  <style>
+    /* Add any additional styles as needed */
+    .fieldset {
+      display: none;
+    }
+
+    .fieldset.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div id="title">
+      <h1>Survey Form</h1>
+    </div>
+  </header>
+
+  <form id="survey-form" onsubmit="redirectToScreen()">
+
+    <div id="description">Let us know how we can improve our service</div><br>
+
+    <fieldset class="fieldset active" id="fieldset1">
+      <div class="sub-group">
+        <label class="left" id="name-label" for="name">*Name:</label>
+        <input type="text" name="customer-name" class="right input-field" id="name" placeholder="Enter your name" required>
+      </div>
+      <button type="button" onclick="nextFieldset('fieldset1', 'fieldset2')">Next</button>
+    </fieldset>
+
+    <fieldset class="fieldset" id="fieldset2">
+        <div class="sub-group">
+            <label class="left" id="email-label" for="email">*Email:</label>
+            <input type="email" name="emailAddress" class="right input-field" placeholder="Enter your email" id="email" required>
+        </div>
+      <button type="button" onclick="nextFieldset('fieldset2', 'fieldset3')">Next</button>
+    </fieldset>
+
+    <!-- Add more fieldsets or form elements as needed -->
+
+    <button type="submit">Submit</button>
+
+  </form>
+
+  <script>
+    function nextFieldset(currentId, nextId) {
+      var currentFieldset = document.getElementById(currentId);
+      var nextFieldset = document.getElementById(nextId);
+
+      if (currentFieldset && nextFieldset) {
+        currentFieldset.classList.remove('active');
+        nextFieldset.classList.add('active');
+      }
+    }
+    function redirectToScreen() {
+            event.preventDefault();
+            // Redirect to the "screen.html" page
+            window.location.href = '/screen';
+    }
+  </script>
+</body>
+</html>

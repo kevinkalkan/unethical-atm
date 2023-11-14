@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM App</title>
+    <!-- You can include additional CSS stylesheets or other meta tags here -->
+    <style>
+        .visible {
+        display: inline-block !important;
+    }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>PHOTO TIME</h1>
+        <p>Let's take a picture of you now!</p>
+    </header>
+
+    <main>
+        <!-- Add a video element to display the camera feed -->
+        <video id="cameraFeed" width="640" height="480" autoplay></video>
+
+        <button onclick="startVideoCapture()">Start Video Capture</button>
+        <button id="stopButton" onclick="stopVideoCapture()" style="display: none;">Confirm</button>
+        <p id="responseText"></p>
+
+        <!-- Add a loading indicator -->
+        <div id="loadingIndicator" style="display: none;">Loading...</div>
+    </main>
+
+    <footer>
+        <!-- You can add a footer with additional information or links -->
+    </footer>
+
+    <!-- You can include additional scripts or links to external scripts here -->
+    <!-- ... (other HTML code) ... -->
+    <!-- ... (other HTML code) ... -->
+
+    <!-- ... (other HTML code) ... -->
+
+    <script>
+        function startVideoCapture() {
+            const videoElement = document.getElementById('cameraFeed');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const responseText = document.getElementById('responseText');
+            const stopButton = document.getElementById('stopButton');
+    
+            // Show loading indicator
+            loadingIndicator.style.display = 'block';
+    
+            // Check if the browser supports getUserMedia
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                // Access the camera and stream the video to the video element
+                navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(stream => {
+                        videoElement.srcObject = stream;
+                        videoElement.onloadedmetadata = () => {
+                            // Log video dimensions for debugging
+                            console.log('Video dimensions:', videoElement.videoWidth, 'x', videoElement.videoHeight);
+                            // Hide loading indicator after video metadata is loaded
+                            loadingIndicator.style.display = 'none';
+                            // Make the "Stop Video Capture" button visible
+                            stopButton.style.visibility = 'visible';
+                        };
+                    })
+                    .catch(error => {
+                        console.error('Error accessing the camera:', error);
+                        // Handle error and display a user-friendly message
+                        responseText.textContent = 'Error accessing the camera. Please check your camera permissions.';
+                        // Hide loading indicator
+                        loadingIndicator.style.display = 'none';
+                    });
+            } else {
+                // If getUserMedia is not supported
+                console.error('getUserMedia not supported on this browser.');
+                // Hide loading indicator and display an error message
+                loadingIndicator.style.display = 'none';
+                responseText.textContent = 'This browser does not support camera access. Please try a different browser.';
+            }
+    
+            // Your existing code for classification can go here
+            fetch('/classify', {
+                    method: 'GET'
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    console.log('Received data:', data);
+                    data = data.trim();
+                    if (data.toLowerCase() === 'dogs') {
+                        responseText.textContent = `I'm a ${data}, woof woof!`;
+                        // Add more actions specific to the 'dogs' case if needed
+                    } else {
+                        responseText.textContent = `I'm not a dog, but I'm still awesome!`;
+                        // Handle other cases if needed
+                    }
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                    // Display an error message to the user
+                    responseText.textContent = 'Error during classification. Please try again.';
+                });
+        }
+    
+        function stopVideoCapture() {
+            // Make a fetch request to the '/stop' route
+            fetch('/stop', {
+                    method: 'GET'
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    // Redirect to the home page after stopping the video capture
+                    window.location.href = '/';
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                    // Handle the error as needed
+                });
+        }
+    </script>
+    
+
+<!-- ... (other HTML code) ... -->
+
+
+</body>
+
+</html>
