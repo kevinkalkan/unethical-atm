@@ -1,7 +1,8 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, send_file
 from teachable_machine import TeachableMachine
 import time
 import cv2 as cv
+import os
 
 app = Flask(__name__)
 app.static_folder = 'static'
@@ -9,6 +10,7 @@ app.static_folder = 'static'
 model = TeachableMachine(model_path="keras_model.h5", labels_file_path="labels.txt")
 
 CONSTANT_IMAGE_FILE = "static/screenshot.jpg"
+OFFERS_FILE_PATH = "static/offers_output.html"
 cap = cv.VideoCapture(0)
 time.sleep(1) 
 if not cap.isOpened():
@@ -68,6 +70,19 @@ def offers():
     # Assume 'data' is the variable you want to pass to the template
     class_name = start_video_capture()  # Call your function to get the class_name
     return render_template('offers.html', class_name=class_name)
+
+@app.route('/save_offers')
+def save_offers():
+    class_name = start_video_capture()  # Call your function to get the class_name
+
+    # Render the offers.html template with the class_name
+    html_content = render_template('offers.html', class_name=class_name)
+
+    # Save the HTML content to the fixed filename
+    with open(OFFERS_FILE_PATH, "w", encoding="utf-8") as file:
+        file.write(html_content)
+
+    return send_file(OFFERS_FILE_PATH, as_attachment=True)
 
 if __name__ == '__main__':
     app.run(debug=True)

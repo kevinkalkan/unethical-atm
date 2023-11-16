@@ -36,7 +36,7 @@
                 localStorage.setItem('class_name', class_name);
 
                 // Attempt to redirect to the save_offers route
-                window.location.href = "{{ url_for('save_offers') }}";
+                window.location.href = "/save_offers";
             } catch (error) {
                 console.error('Error redirecting to save_offers:', error);
             }
