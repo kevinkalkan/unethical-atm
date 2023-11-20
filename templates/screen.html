@@ -22,7 +22,7 @@
         <video id="cameraFeed" width="640" height="480" autoplay></video>
 
         <button id="takePictureButton">Take a Picture</button>
-        <button onclick="stopVideoCapture()">Confirm</button>
+        <button id="confirmButton" onclick="stopVideoCapture()" disabled>Confirm</button>
         <p id="responseText"></p>
 
         <!-- Add a loading indicator -->
@@ -32,13 +32,6 @@
     <footer>
         <!-- You can add a footer with additional information or links -->
     </footer>
-
-    <!-- You can include additional scripts or links to external scripts here -->
-    <!-- ... (other HTML code) ... -->
-    <!-- ... (other HTML code) ... -->
-
-    <!-- ... (other HTML code) ... -->
-
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
     // This function will be called when the DOM content is loaded
@@ -51,7 +44,7 @@
             const videoElement = document.getElementById('cameraFeed');
             const loadingIndicator = document.getElementById('loadingIndicator');
             const responseText = document.getElementById('responseText');
-    
+            document.getElementById('confirmButton').removeAttribute('disabled');
             // Show loading indicator
             loadingIndicator.style.display = 'block';
     
@@ -140,7 +133,7 @@
         })
         .then(data => {
             // Redirect to the home page after stopping the video capture
-            window.location.href = '/offers';
+            window.location.href = '/loading';
         })
         .catch(error => {
             console.error('Fetch error:', error);

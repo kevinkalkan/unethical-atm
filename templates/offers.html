@@ -11,6 +11,7 @@
 
     <p>This is the class name from the server: <span id="class_name_placeholder"></span></p>
     <button onclick="saveOffers()">Save Offers</button>
+    <button onclick="resetSession()">Reset Session</button>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -39,6 +40,17 @@
                 window.location.href = "{{ url_for('save_offers') }}";
             } catch (error) {
                 console.error('Error redirecting to save_offers:', error);
+            }
+        }
+        function resetSession() {
+            try {
+                // Clear the class_name from localStorage
+                localStorage.clear();
+
+                // Redirect to the index route
+                window.location.href = "{{ url_for('index') }}";
+            } catch (error) {
+                console.error('Error resetting session:', error);
             }
         }
     </script>

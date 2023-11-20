@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Page</title>
+    <style>
+        #loading {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .loader {
+            border: 8px solid #f3f3f3; /* Light grey */
+            border-top: 8px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    <script>
+        // Use JavaScript to show loading animation and redirect after 3 seconds
+        setTimeout(function() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+            window.location.href = "/offers";
+        }, 3000); // 3000 milliseconds = 3 seconds
+    </script>
+</head>
+<body>
+    <div id="loading">
+        <div class="loader"></div>
+        <p>Loading...</p>
+    </div>
+    <h1 id="content" style="display: none;">Loading...</h1>
+</body>
+</html>

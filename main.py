@@ -65,6 +65,10 @@ def survey():
 def screen():
     return render_template('screen.html')
 
+@app.route('/loading')
+def loading():
+    return render_template('loading.html')
+
 @app.route('/offers')
 def offers():
     # Assume 'data' is the variable you want to pass to the template
