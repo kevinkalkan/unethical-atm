@@ -21,7 +21,6 @@ def start_video_capture():
 
     if img is not None and img.any() and img.shape[0] > 0 and img.shape[1] > 0:
         cv.imwrite(CONSTANT_IMAGE_FILE, img)
-    # Continue with classification
     else:
         print("Error: Captured frame is empty or has invalid dimensions.")
 
@@ -71,18 +70,13 @@ def loading():
 
 @app.route('/offers')
 def offers():
-    # Assume 'data' is the variable you want to pass to the template
-    class_name = start_video_capture()  # Call your function to get the class_name
+    class_name = start_video_capture() 
     return render_template('offers.html', class_name=class_name)
 
 @app.route('/save_offers')
 def save_offers():
-    class_name = start_video_capture()  # Call your function to get the class_name
-
-    # Render the offers.html template with the class_name
+    class_name = start_video_capture() 
     html_content = render_template('offers.html', class_name=class_name)
-
-    # Save the HTML content to the fixed filename
     with open(OFFERS_FILE_PATH, "w", encoding="utf-8") as file:
         file.write(html_content)
 

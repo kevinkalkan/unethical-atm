@@ -10,7 +10,6 @@
   <link href="https://fonts.googleapis.com/css?family=Quicksand|Roboto" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
   <style>
-    /* Add any additional styles as needed */
     .fieldset {
       display: none;
     }
@@ -46,9 +45,6 @@
         </div>
       <button type="button" onclick="nextFieldset('fieldset2', 'fieldset3')">Next</button>
     </fieldset>
-
-    <!-- Add more fieldsets or form elements as needed -->
-
     <button type="submit">Submit</button>
 
   </form>
@@ -65,7 +61,6 @@
     }
     function redirectToScreen() {
             event.preventDefault();
-            // Redirect to the "screen.html" page
             window.location.href = '/screen';
     }
   </script>

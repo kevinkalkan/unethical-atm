@@ -19,7 +19,7 @@
                 // Retrieve the class_name from localStorage
                 const class_name = localStorage.getItem('class_name');
     
-                // Do something with the class_name (update the DOM, etc.)
+                // Change text by the class_name
                 if (class_name) {
                     document.getElementById('class_name_placeholder').textContent = class_name;
                 }
@@ -36,7 +36,6 @@
                 // Store the class_name in localStorage
                 localStorage.setItem('class_name', class_name);
 
-                // Attempt to redirect to the save_offers route
                 window.location.href = "{{ url_for('save_offers') }}";
             } catch (error) {
                 console.error('Error redirecting to save_offers:', error);
@@ -46,8 +45,6 @@
             try {
                 // Clear the class_name from localStorage
                 localStorage.clear();
-
-                // Redirect to the index route
                 window.location.href = "{{ url_for('index') }}";
             } catch (error) {
                 console.error('Error resetting session:', error);

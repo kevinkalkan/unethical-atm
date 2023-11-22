@@ -18,20 +18,12 @@
     </header>
 
     <main>
-        <!-- Add a video element to display the camera feed -->
         <video id="cameraFeed" width="640" height="480" autoplay></video>
 
         <button id="takePictureButton">Take a Picture</button>
         <button id="confirmButton" onclick="stopVideoCapture()" disabled>Confirm</button>
         <p id="responseText"></p>
-
-        <!-- Add a loading indicator -->
-        <div id="loadingIndicator" style="display: none;">Loading...</div>
     </main>
-
-    <footer>
-        <!-- You can add a footer with additional information or links -->
-    </footer>
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
     // This function will be called when the DOM content is loaded
@@ -64,7 +56,7 @@
                     })
                     .catch(error => {
                         console.error('Error accessing the camera:', error);
-                        // Handle error and display a user-friendly message
+                        // Handle error
                         responseText.textContent = 'Error accessing the camera. Please check your camera permissions.';
                         // Hide loading indicator
                         loadingIndicator.style.display = 'none';
@@ -77,7 +69,6 @@
                 responseText.textContent = 'This browser does not support camera access. Please try a different browser.';
             }
     
-            // Your existing code for classification can go here
             fetch('/classify', {
                     method: 'GET'
                 })
@@ -96,19 +87,15 @@
                     switch (data.toLowerCase()) {
                         case 'dogs':
                             responseText.textContent = `I'm a ${data}, woof woof!`;
-                            // Add more actions specific to the 'dogs' case if needed
                             break;
                         case 'hats':
                             responseText.textContent = `I'm a ${data}, very cool indeed!`;
-                            // Add more actions specific to the 'dogs' case if needed
                             break;
                         case 'clouds':
                             responseText.textContent = `I'm a ${data}, airbending time!`;
-                            // Add more actions specific to the 'dogs' case if needed
                             break;    
                         default:
                             responseText.textContent = `I'm a fucking pistachio? But I'm still awesome!`;
-                            // Handle other cases if needed
                             break;
                     }
                 })
@@ -132,19 +119,13 @@
             return response.text();
         })
         .then(data => {
-            // Redirect to the home page after stopping the video capture
             window.location.href = '/loading';
         })
         .catch(error => {
             console.error('Fetch error:', error);
-            // Handle the error as needed
         });
 }
     </script>
-    
-
-<!-- ... (other HTML code) ... -->
-
 
 </body>
 
