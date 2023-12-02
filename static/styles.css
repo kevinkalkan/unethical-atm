@@ -1,126 +1,87 @@
-body{
-    background-color:#FFE4E1;
-  }
-  
-  header{
-    font-family:Roboto;
-    font-size:26px;
-    color:black;
-    font-weight:bold;
-    text-align:center;
-    margin-top:20px;
-    margin-bottom:20px;
-  }
-  #cameraFeed {
-    display: block; /* Make sure it's set to 'block' or 'inline-block' */
-    visibility: visible; /* Make sure it's set to 'visible' */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.15;
 }
 
-  #survey-form{
-    background-color:#FFFFFF;
-    font-family:Quicksand;
-    max-width:70%;
-    margin:auto;
-    padding:0;
-    border-radius:15px;
-  }
+header {
+  background-color: #D7E9F1;
+  color: rgb(0, 0, 0);
+  padding: 1em;
+  display: flex;
+  align-items: center;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+}
+
+nav ul li {
+  margin-right: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+
+main {
+  padding: 20px;
+}
+
+.hero {
+  text-align: center;
+  padding: 50px 0;
+}
+
+.btn-primary {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.accounts,
+.transactions,
+.services {
+  margin-top: 40px;
+}
+
+footer {
+  background-color: #002337;
+  color: white;
+  text-align: center;
+  padding: 1em;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  opacity: 0.95;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 20px;
+}
+
+.hero-content {
+  margin: auto;
   
-  #description{
-    text-align:center;
-    font-size:16px;
-    padding-top:17px;
-    font-weight:bold;
-  }
-  
-  .fieldset{
-    border-width:0;
-    padding-top:1%;
-  
-  }
-  
-  .sub-group{
-    position:relative;
-    right:30px;
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    padding:1%;
-  }
-  
-  label.left{
-    width:30%;
-    padding-right:4%;
-    text-align:right;
-  }
-  
-  
-  .right{
-    width:30%;
-  }
-  
-  .input-field{
-    height:20px;
-    padding:5px;
-    border: 1px solid #c0c0c0;
-    border-radius: 2px;
-  }
-  
-  #dropdown{
-    font-family:Quicksand;
-    height:30px;
-    border: 1px solid #c0c0c0;
-    border-radius: 2px;
-  }
-  
-  .checkbox{
-    position:relative;
-    padding:3px;
-    right:3px;
-    bottom:15px;
-  }
-  
-  .radio{
-    position:relative;
-    padding:3px;
-    bottom:15px;
-  }
-  
-  h2{
-    position:relative;
-    bottom:8px;
-    font-size:16px;
-    text-align:center;
-    font-weight:bold;
-  }
-  
-  .commentbox{
-    text-align:center;
-  }
-  
-  textarea{
-    width:65%;
-    border-radius:4px;
-  }
-  
-  #submit{
-    background:#FFE4E1;
-    font-family:Roboto;
-    border-radius:4px;
-    font-size:23px;
-  }
-  
-  label:hover{
-    cursor:pointer;
-  }
-  
-  @media (max-width: 800px) {
-    body {
-      font-size: 12px;
-    }
-  }
-  
-  @media (max-width: 580px) {
-    body {
-      font-size: 9px;
-    }
-  }
+}
+
+
+.hero-image {
+  width: 60%; /* Adjust the width as needed */
+  text-align: center;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

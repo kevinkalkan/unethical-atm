@@ -20,7 +20,7 @@ def start_video_capture():
     _, img = cap.read()
 
     if img is not None and img.any() and img.shape[0] > 0 and img.shape[1] > 0:
-        cv.imwrite(CONSTANT_IMAGE_FILE, img)
+        cv.imwrite(CONSTANT_IMAGE_FILE, img)    
     else:
         print("Error: Captured frame is empty or has invalid dimensions.")
 

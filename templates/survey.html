@@ -21,34 +21,58 @@
 </head>
 <body>
   <header>
-    <div id="title">
-      <h1>Survey Form</h1>
+    <div style="width: 190px; height: 110px; background: white"></div>
+    <div style="justify-content: space-between;">
+        <div style="color: #002337; font-size: 48px; font-family: Inter; font-weight: 400; letter-spacing: 14.40px; word-wrap: break-word">ATM</div>
+        <!--- <nav>
+            <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#accounts">Accounts</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav> -->
     </div>
   </header>
-
   <form id="survey-form" onsubmit="redirectToScreen()" autocomplete="off">
 
-    <div id="description">Let us know how we can improve our service</div><br>
-
-    <fieldset class="fieldset active" id="fieldset1">
-      <div class="sub-group">
-        <label class="left" id="name-label" for="name">*Name:</label>
-        <input type="text" name="customer-name" class="right input-field" id="name" placeholder="Enter your name" required>
+    <fieldset class="fieldset active" id="fieldset1" style="width: 100%; height: 100%; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 25px; display: inline-flex">
+      <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">How many plants do you own?</div>
+        <input type="text" style="width: 759.88px; height: 56px; background: rgba(255, 255, 255, 0); border-radius: 10px; border: 1px #EBE8E4 solid" name="customer-plant" class="right input-field" id="name" placeholder="" required>
       </div>
       <button type="button" onclick="nextFieldset('fieldset1', 'fieldset2')">Next</button>
     </fieldset>
-
-    <fieldset class="fieldset" id="fieldset2">
-        <div class="sub-group">
-            <label class="left" id="email-label" for="email">*Email:</label>
-            <input type="email" name="emailAddress" class="right input-field" placeholder="Enter your email" id="email" required>
+    <fieldset class="fieldset" id="fieldset2" style="width: 100%; height: 100%; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 25px; display: inline-flex">
+        <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+          <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">How much money do you spend on food?</div>
+            <input type="text" style="width: 759.88px; height: 56px; background: rgba(255, 255, 255, 0); border-radius: 10px; border: 1px #EBE8E4 solid" name="customer-food" class="right input-field" placeholder="" id="name" required>
         </div>
       <button type="button" onclick="nextFieldset('fieldset2', 'fieldset3')">Next</button>
+    </fieldset>
+    <fieldset class="fieldset" id="fieldset3" style="width: 100%; height: 100%; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 25px; display: inline-flex">
+      <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">How much money do you expect to transfer abroad per month?</div>
+          <input type="text" style="width: 759.88px; height: 56px; background: rgba(255, 255, 255, 0); border-radius: 10px; border: 1px #EBE8E4 solid" name="customer-transfer" class="right input-field" placeholder="" id="name" required>
+      </div>
+      <button type="button" onclick="nextFieldset('fieldset3', 'fieldset4')">Next</button>
+    </fieldset>
+    <fieldset class="fieldset" id="fieldset4" style="width: 100%; height: 100%; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 25px; display: inline-flex">
+      <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">How much money do you expect to earn per month?</div>
+          <input type="text" style="width: 759.88px; height: 56px; background: rgba(255, 255, 255, 0); border-radius: 10px; border: 1px #EBE8E4 solid" name="customer-transfer" class="right input-field" placeholder="" id="name" required>
+      </div>
+      <button type="button" onclick="nextFieldset('fieldset3', 'fieldset4')">Next</button>
     </fieldset>
     <button type="submit">Submit</button>
 
   </form>
 
+
+  <footer>
+    <p>&copy; 2023 ATM Banking. All rights reserved.</p>
+  </footer>
   <script>
     function nextFieldset(currentId, nextId) {
       var currentFieldset = document.getElementById(currentId);
@@ -64,5 +88,6 @@
             window.location.href = '/screen';
     }
   </script>
+  
 </body>
 </html>

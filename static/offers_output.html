@@ -11,6 +11,7 @@
 
     <p>This is the class name from the server: <span id="class_name_placeholder"></span></p>
     <button onclick="saveOffers()">Save Offers</button>
+    <button onclick="resetSession()">Reset Session</button>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -18,7 +19,7 @@
                 // Retrieve the class_name from localStorage
                 const class_name = localStorage.getItem('class_name');
     
-                // Do something with the class_name (update the DOM, etc.)
+                // Change text by the class_name
                 if (class_name) {
                     document.getElementById('class_name_placeholder').textContent = class_name;
                 }
@@ -35,10 +36,18 @@
                 // Store the class_name in localStorage
                 localStorage.setItem('class_name', class_name);
 
-                // Attempt to redirect to the save_offers route
                 window.location.href = "/save_offers";
             } catch (error) {
                 console.error('Error redirecting to save_offers:', error);
+            }
+        }
+        function resetSession() {
+            try {
+                // Clear the class_name from localStorage
+                localStorage.clear();
+                window.location.href = "/";
+            } catch (error) {
+                console.error('Error resetting session:', error);
             }
         }
     </script>

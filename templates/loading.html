@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
     <title>Loading Page</title>
     <style>
         #loading {
@@ -33,10 +34,28 @@
     </script>
 </head>
 <body>
+    <header>
+        <div style="width: 190px; height: 110px; background: white"></div>
+        <div style="justify-content: space-between;">
+            <div style="color: #002337; font-size: 48px; font-family: Inter; font-weight: 400; letter-spacing: 14.40px; word-wrap: break-word">ATM</div>
+            <!--- <nav>
+                <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#accounts">Accounts</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav> -->
+        </div>
+      </header>
     <div id="loading">
         <div class="loader"></div>
         <p>Loading...</p>
     </div>
     <h1 id="content" style="display: none;">Loading...</h1>
+    <footer>
+        <p>&copy; 2023 ATM Banking. All rights reserved.</p>
+      </footer>
 </body>
 </html>

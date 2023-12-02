@@ -1,0 +1,30 @@
+:root {
+    --white: rgba(255, 255, 255, 1);
+    --fake-white: rgba(251, 253, 254, 1);
+    --light-gray: rgba(217, 217, 217, 1);
+    --light-blue: rgba(215, 233, 241, 1);
+    --blue: rgba(0, 121, 196, 1);
+    --dark-navy: rgba(0, 35, 55, 1);
+    --dark-green: rgba(13, 50, 7, 1);
+    --medium-green: rgba(117, 185, 106, 1);
+    --mint: rgba(230, 255, 226, 1);
+    --body-font-family: "Abel-Regular", Helvetica;
+    --body-font-weight: 400;
+    --body-font-size: 24px;
+    --body-letter-spacing: 0px;
+    --body-line-height: normal;
+    --body-font-style: normal;
+    --header-3-font-family: "Abel-Regular", Helvetica;
+    --header-3-font-weight: 400;
+    --header-3-font-size: 32px;
+    --header-3-letter-spacing: 0px;
+    --header-3-line-height: normal;
+    --header-3-font-style: normal;
+    --header-1-font-family: "UbuntuCondensed-Regular", Helvetica;
+    --header-1-font-weight: 400;
+    --header-1-font-size: 48px;
+    --header-1-letter-spacing: 5.28px;
+    --header-1-line-height: normal;
+    --header-1-font-style: normal;
+  }
+  

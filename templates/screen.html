@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ATM App</title>
-    <!-- You can include additional CSS stylesheets or other meta tags here -->
     <style>
 
     </style>
@@ -19,59 +18,54 @@
 
     <main>
         <video id="cameraFeed" width="640" height="480" autoplay></video>
-
-        <button id="takePictureButton">Take a Picture</button>
+        <button id="takePictureButton" onclick="startVideoCapture()">Take a Picture</button>
         <button id="confirmButton" onclick="stopVideoCapture()" disabled>Confirm</button>
+        <button id="deletePictureButton" onclick="deletePicture()">Delete Picture</button>
         <p id="responseText"></p>
     </main>
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
-    // This function will be called when the DOM content is loaded
-        const takePictureButton = document.getElementById('takePictureButton');
+            const takePictureButton = document.getElementById('takePictureButton');
+            const confirmButton = document.getElementById('confirmButton');
+            const deletePictureButton = document.getElementById('deletePictureButton');
 
-    // Add an event listener to the "Take a Picture" button
-        takePictureButton.addEventListener('click', startVideoCapture);
-});
+            takePictureButton.addEventListener('click', startVideoCapture);
+            confirmButton.addEventListener('click', stopVideoCapture);
+            deletePictureButton.addEventListener('click', deletePicture);
+        });
+
         function startVideoCapture() {
             const videoElement = document.getElementById('cameraFeed');
-            const loadingIndicator = document.getElementById('loadingIndicator');
             const responseText = document.getElementById('responseText');
-            document.getElementById('confirmButton').removeAttribute('disabled');
+            const confirmButton = document.getElementById('confirmButton');
+
+            // Reset video element and enable "Take a Picture" button
+            resetVideoElement();
+            enableTakePictureButton();
+
             // Show loading indicator
-            loadingIndicator.style.display = 'block';
-    
-            // Check if the browser supports getUserMedia
+
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-                // Access the camera and stream the video to the video element
                 navigator.mediaDevices.getUserMedia({ video: true })
                     .then(stream => {
                         videoElement.srcObject = stream;
                         videoElement.onloadedmetadata = () => {
-                            // Log video dimensions for debugging
                             console.log('Video dimensions:', videoElement.videoWidth, 'x', videoElement.videoHeight);
-                            // Hide loading indicator after video metadata is loaded
-                            loadingIndicator.style.display = 'none';
                         };
                         videoElement.play();
                     })
                     .catch(error => {
                         console.error('Error accessing the camera:', error);
-                        // Handle error
                         responseText.textContent = 'Error accessing the camera. Please check your camera permissions.';
-                        // Hide loading indicator
-                        loadingIndicator.style.display = 'none';
                     });
             } else {
-                // If getUserMedia is not supported
                 console.error('getUserMedia not supported on this browser.');
-                // Hide loading indicator and display an error message
-                loadingIndicator.style.display = 'none';
                 responseText.textContent = 'This browser does not support camera access. Please try a different browser.';
             }
-    
+
             fetch('/classify', {
-                    method: 'GET'
-                })
+                method: 'GET'
+            })
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -81,19 +75,24 @@
                 .then(data => {
                     console.log('Received data:', data);
                     data = data.trim();
-                    // Save the class_name in localStorage
                     localStorage.setItem('class_name', data);
 
                     switch (data.toLowerCase()) {
-                        case 'dogs':
-                            responseText.textContent = `I'm a ${data}, woof woof!`;
+                        case 'kevin':
+                            responseText.textContent = `I'm ${data}, yay!`;
                             break;
-                        case 'hats':
-                            responseText.textContent = `I'm a ${data}, very cool indeed!`;
+                        case 'anna':
+                            responseText.textContent = `I'm ${data}, very cool indeed!`;
                             break;
-                        case 'clouds':
-                            responseText.textContent = `I'm a ${data}, airbending time!`;
-                            break;    
+                        case 'erica':
+                            responseText.textContent = `I'm ${data}, crazy!`;
+                            break;
+                        case 'erdem':
+                            responseText.textContent = `I'm ${data}, wowowo!`;
+                            break;
+                        case 'halfdan':
+                            responseText.textContent = `I'm ${data}, hell yea!`;
+                            break;        
                         default:
                             responseText.textContent = `I'm a fucking pistachio? But I'm still awesome!`;
                             break;
@@ -101,32 +100,64 @@
                 })
                 .catch(error => {
                     console.error('Fetch error:', error);
-                    // Display an error message to the user
                     responseText.textContent = 'Error during classification. Please try again.';
                 });
         }
-    
+
         function stopVideoCapture() {
-    // Make a fetch request to the '/stop' route
-    fetch('/stop', {
-            method: 'GET'
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
+            fetch('/stop', {
+                method: 'GET'
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    window.location.href = '/loading';
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                });
+        }
+
+        function deletePicture() {
+            // Add logic to delete the picture here
+
+            // Reset video element and enable "Take a Picture" button
+            resetVideoElement();
+            enableTakePictureButton();
+        }
+
+        function resetVideoElement() {
+            const videoElement = document.getElementById('cameraFeed');
+            const stream = videoElement.srcObject;
+
+            if (stream) {
+                const tracks = stream.getTracks();
+
+                tracks.forEach(track => track.stop());
+
+                videoElement.srcObject = null;
             }
-            // Check if the response indicates success before redirecting
-            return response.text();
-        })
-        .then(data => {
-            window.location.href = '/loading';
-        })
-        .catch(error => {
-            console.error('Fetch error:', error);
-        });
-}
+        }
+
+        function enableTakePictureButton() {
+            const takePictureButton = document.getElementById('takePictureButton');
+            takePictureButton.removeAttribute('disabled');
+        }
     </script>
 
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
