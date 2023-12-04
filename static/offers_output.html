@@ -3,16 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
     <title>Offers Page</title>
 </head>
 <body>
+    <header>
+        <div style="width: 190px; height: 110px; background: white"></div>
+        <div style="justify-content: space-between;">
+            <div style="color: #002337; font-size: 48px; font-family: Inter; font-weight: 400; letter-spacing: 14.40px; word-wrap: break-word">ATM</div>
+            <!--- <nav>
+                <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#accounts">Accounts</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav> -->
+        </div>
+      </header>
+    <main>
+        <h1>Offers Page</h1>
 
-    <h1>Offers Page</h1>
-
-    <p>This is the class name from the server: <span id="class_name_placeholder"></span></p>
-    <button onclick="saveOffers()">Save Offers</button>
-    <button onclick="resetSession()">Reset Session</button>
-
+        <p style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">This is the class name from the server: <span id="class_name_placeholder"></span></p>
+        <button onclick="saveOffers()">Save Offers</button>
+        <button onclick="resetSession()">Reset Session</button>
+    </main>
+    <footer>
+        <p>&copy; 2023 ATM Banking. All rights reserved.</p>
+    </footer>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             try {

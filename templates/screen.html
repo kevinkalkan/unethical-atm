@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
     <title>ATM App</title>
     <style>
 
@@ -12,26 +13,37 @@
 
 <body>
     <header>
-        <h1>PHOTO TIME</h1>
-        <p>Let's take a picture of you now!</p>
+        <div style="width: 190px; height: 110px; background: white"></div>
+        <div style="justify-content: space-between;">
+            <div style="color: #002337; font-size: 48px; font-family: Inter; font-weight: 400; letter-spacing: 14.40px; word-wrap: break-word">ATM</div>
+            <!--- <nav>
+                <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#accounts">Accounts</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav> -->
+        </div>
     </header>
 
     <main>
         <video id="cameraFeed" width="640" height="480" autoplay></video>
         <button id="takePictureButton" onclick="startVideoCapture()">Take a Picture</button>
         <button id="confirmButton" onclick="stopVideoCapture()" disabled>Confirm</button>
-        <button id="deletePictureButton" onclick="deletePicture()">Delete Picture</button>
         <p id="responseText"></p>
     </main>
+    <footer>
+        <p>&copy; 2023 ATM Banking. All rights reserved.</p>
+      </footer>
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             const takePictureButton = document.getElementById('takePictureButton');
             const confirmButton = document.getElementById('confirmButton');
-            const deletePictureButton = document.getElementById('deletePictureButton');
 
             takePictureButton.addEventListener('click', startVideoCapture);
             confirmButton.addEventListener('click', stopVideoCapture);
-            deletePictureButton.addEventListener('click', deletePicture);
         });
 
         function startVideoCapture() {
@@ -97,6 +109,7 @@
                             responseText.textContent = `I'm a fucking pistachio? But I'm still awesome!`;
                             break;
                     }
+                    confirmButton.removeAttribute('disabled');
                 })
                 .catch(error => {
                     console.error('Fetch error:', error);
@@ -122,14 +135,6 @@
                 });
         }
 
-        function deletePicture() {
-            // Add logic to delete the picture here
-
-            // Reset video element and enable "Take a Picture" button
-            resetVideoElement();
-            enableTakePictureButton();
-        }
-
         function resetVideoElement() {
             const videoElement = document.getElementById('cameraFeed');
             const stream = videoElement.srcObject;
@@ -152,12 +157,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-

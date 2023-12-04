@@ -3,7 +3,7 @@
 <head>
   <title>Survey Form</title>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
+  <meta name="viewport" content="width=device-width" initial-scale="1.0"/>
   <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="pragma" content="no-cache">
   <meta http-equiv="expires" content="0">
@@ -15,7 +15,7 @@
     }
 
     .fieldset.active {
-      display: block;
+      display: inline-flex;
     }
   </style>
 </head>
@@ -37,35 +37,34 @@
   </header>
   <form id="survey-form" onsubmit="redirectToScreen()" autocomplete="off">
 
-    <fieldset class="fieldset active" id="fieldset1" style="width: 100%; height: 100%; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 25px; display: inline-flex">
+    <fieldset class="fieldset active" id="fieldset1" style="width: 100%; height: 100%; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 25px;">
       <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
         <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">How many plants do you own?</div>
         <input type="text" style="width: 759.88px; height: 56px; background: rgba(255, 255, 255, 0); border-radius: 10px; border: 1px #EBE8E4 solid" name="customer-plant" class="right input-field" id="name" placeholder="" required>
       </div>
-      <button type="button" onclick="nextFieldset('fieldset1', 'fieldset2')">Next</button>
+      <button type="button" class="btn-primary" onclick="nextFieldset('fieldset1', 'fieldset2')">Next</button>
     </fieldset>
-    <fieldset class="fieldset" id="fieldset2" style="width: 100%; height: 100%; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 25px; display: inline-flex">
+    <fieldset class="fieldset" id="fieldset2" style="width: 100%; height: 100%; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 25px;">
         <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
           <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">How much money do you spend on food?</div>
             <input type="text" style="width: 759.88px; height: 56px; background: rgba(255, 255, 255, 0); border-radius: 10px; border: 1px #EBE8E4 solid" name="customer-food" class="right input-field" placeholder="" id="name" required>
         </div>
-      <button type="button" onclick="nextFieldset('fieldset2', 'fieldset3')">Next</button>
+      <button type="button" class="btn-primary" onclick="nextFieldset('fieldset2', 'fieldset3')">Next</button>
     </fieldset>
-    <fieldset class="fieldset" id="fieldset3" style="width: 100%; height: 100%; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 25px; display: inline-flex">
+    <fieldset class="fieldset" id="fieldset3" style="width: 100%; height: 100%; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 25px;">
       <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
         <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">How much money do you expect to transfer abroad per month?</div>
           <input type="text" style="width: 759.88px; height: 56px; background: rgba(255, 255, 255, 0); border-radius: 10px; border: 1px #EBE8E4 solid" name="customer-transfer" class="right input-field" placeholder="" id="name" required>
       </div>
-      <button type="button" onclick="nextFieldset('fieldset3', 'fieldset4')">Next</button>
+      <button type="button" class="btn-primary" onclick="nextFieldset('fieldset3', 'fieldset4')">Next</button>
     </fieldset>
-    <fieldset class="fieldset" id="fieldset4" style="width: 100%; height: 100%; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 25px; display: inline-flex">
+    <fieldset class="fieldset" id="fieldset4" style="width: 100%; height: 100%; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 25px;">
       <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
         <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">How much money do you expect to earn per month?</div>
           <input type="text" style="width: 759.88px; height: 56px; background: rgba(255, 255, 255, 0); border-radius: 10px; border: 1px #EBE8E4 solid" name="customer-transfer" class="right input-field" placeholder="" id="name" required>
       </div>
-      <button type="button" onclick="nextFieldset('fieldset3', 'fieldset4')">Next</button>
     </fieldset>
-    <button type="submit">Submit</button>
+    <button type="submit"class="btn-primary">Submit</button>
 
   </form>
 
@@ -74,13 +73,19 @@
     <p>&copy; 2023 ATM Banking. All rights reserved.</p>
   </footer>
   <script>
+
     function nextFieldset(currentId, nextId) {
       var currentFieldset = document.getElementById(currentId);
       var nextFieldset = document.getElementById(nextId);
+      var inputField = currentFieldset.querySelector('input[required]');
 
-      if (currentFieldset && nextFieldset) {
+      // Check if the input field in the current fieldset is not empty
+      if (inputField && inputField.value.trim() !== '') {
         currentFieldset.classList.remove('active');
         nextFieldset.classList.add('active');
+      } else {
+        // Optionally, you can show an error message or highlight the unanswered question
+        alert('Please answer the current question before proceeding.');
       }
     }
     function redirectToScreen() {
