@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <title>Offers Page</title>
 </head>
 <body>
@@ -19,9 +20,10 @@
         <p style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">This is the class name from the server: <span id="class_name_placeholder"></span></p>
         <div id="logo-box" style="width: 190px; height: 110px; background: white"></div>
 
-        <button class="btn-primary" onclick="saveOffers()">Save Offers</button>
-        <button class="btn-primary" onclick="resetSession()">Reset Session</button>
     </main>
+    
+    <button class="btn-primary" onclick="captureMainScreenshot()">Save Offers</button>
+    <button class="btn-primary" onclick="resetSession()">Reset Session</button>
     <footer>
         <p>&copy; 2023 ATM. All rights reserved.</p>
     </footer>
@@ -54,7 +56,6 @@
         }
         function resetSession() {
             try {
-                // Clear the class_name from localStorage
                 localStorage.clear();
                 window.location.href = "{{ url_for('index') }}";
             } catch (error) {
@@ -77,6 +78,27 @@
                 return 'white'; // Default color
         }
     }
+
+    function captureMainScreenshot() {
+            try {
+                // Select the <main> element
+                var mainElement = document.querySelector('main');
+
+                // Use html2canvas to capture the screenshot of <main>
+                html2canvas(mainElement).then(function(canvas) {
+                    // Convert the canvas to a data URL
+                    var screenshotDataUrl = canvas.toDataURL("image/png");
+
+                    // Create a temporary link element and trigger a download
+                    var link = document.createElement('a');
+                    link.href = screenshotDataUrl;
+                    link.download = 'membership.png';
+                    link.click();
+                });
+            } catch (error) {
+                console.error('Error capturing screenshot:', error);
+            }
+        }
     </script>
     
 </body>

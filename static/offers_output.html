@@ -11,15 +11,6 @@
         <div style="width: 190px; height: 110px; background: white"></div>
         <div style="justify-content: space-between;">
             <div style="color: #002337; font-size: 48px; font-family: Inter; font-weight: 400; letter-spacing: 14.40px; word-wrap: break-word">ATM</div>
-            <!--- <nav>
-                <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#accounts">Accounts</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav> -->
         </div>
       </header>
     <main>
@@ -28,19 +19,17 @@
         <p style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">This is the class name from the server: <span id="class_name_placeholder"></span></p>
         <div id="logo-box" style="width: 190px; height: 110px; background: white"></div>
 
-        <button onclick="saveOffers()">Save Offers</button>
-        <button onclick="resetSession()">Reset Session</button>
+        <button class="btn-primary" onclick="saveOffers()">Save Offers</button>
+        <button class="btn-primary" onclick="resetSession()">Reset Session</button>
     </main>
     <footer>
-        <p>&copy; 2023 ATM Banking. All rights reserved.</p>
+        <p>&copy; 2023 ATM. All rights reserved.</p>
     </footer>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             try {
-                // Retrieve the class_name from localStorage
+                
                 const class_name = localStorage.getItem('class_name');
-    
-                // Change text by the class_name
                 if (class_name) {
                     document.getElementById('class_name_placeholder').textContent = class_name;
 
@@ -54,10 +43,8 @@
 
         function saveOffers() {
             try {
-                // Retrieve the class_name from the DOM
                 const class_name = document.getElementById('class_name_placeholder').textContent;
 
-                // Store the class_name in localStorage
                 localStorage.setItem('class_name', class_name);
 
                 window.location.href = "/save_offers";
@@ -67,7 +54,6 @@
         }
         function resetSession() {
             try {
-                // Clear the class_name from localStorage
                 localStorage.clear();
                 window.location.href = "/";
             } catch (error) {
@@ -75,17 +61,17 @@
             }
         }
         function getBackgroundColorFromClass(class_name) {
-        // You can implement your logic to map class names to background colors here
-        // For example, if class_name is 'class1', return 'red'; if class_name is 'class2', return 'blue', and so on.
-        // Replace this logic with your actual mapping.
-
-        // Example mapping:
         switch (class_name) {
             case 'Kevin':
-                return 'red';
+                return 'pink';
             case 'Erica':
-                return 'blue';
-            // Add more cases as needed
+                return 'green';
+            case 'Halfdan':
+                return 'gold';
+            case 'Anna':
+                return 'brown';
+            case 'Erdem':
+                return 'orange';
             default:
                 return 'white'; // Default color
         }

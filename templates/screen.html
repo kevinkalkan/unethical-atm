@@ -7,7 +7,33 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
     <title>ATM App</title>
     <style>
+#takePictureButton {
+        background-image: url('/static/take_picture_button.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: transparent;
+        width: 100px; /* Adjust the width as needed */
+        height: 100px; /* Adjust the height as needed */
+        border: none;
+        cursor: pointer;
+    }
 
+    #takePictureButton:hover {
+        background-image: url('/static/take_picture_button2.png');
+    }
+    #takePictureButton.clicked {
+        background-image: url('/static/take_picture_button3.png');
+    }
+    .whitebox {
+        background: white;
+    }
+    main {
+            display: flex; 
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
     </style>
 </head>
 
@@ -29,21 +55,32 @@
     </header>
 
     <main>
-        <video id="cameraFeed" width="640" height="480" autoplay></video>
-        <button id="takePictureButton" class="btn-primary" onclick="startVideoCapture()">Take a Picture</button>
-        <button id="confirmButton" class="btn-primary" onclick="stopVideoCapture()" disabled>Confirm</button>
+        <p id="welcome" style="font-size: 20px;">Take a picture to verify your identity.</p>
+        <div id="cameraFeed" class="blackBox"></div>
+        <button id="takePictureButton" onclick="startVideoCapture()"></button>
+        <button class="btn-primary"  disabled id="confirmButton" onclick="stopVideoCapture()" disabled>Confirm</button>
         <p id="responseText"></p>
     </main>
     <footer>
-        <p>&copy; 2023 ATM. All rights reserved.</p>
+        <p>&copy; 2023 ATM Banking. All rights reserved.</p>
       </footer>
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             const takePictureButton = document.getElementById('takePictureButton');
             const confirmButton = document.getElementById('confirmButton');
+            const cameraFeed = document.getElementById('cameraFeed');
 
             takePictureButton.addEventListener('click', startVideoCapture);
             confirmButton.addEventListener('click', stopVideoCapture);
+            takePictureButton.addEventListener('mousedown', function () {
+            takePictureButton.classList.add('clicked');
+            cameraFeed.classList.add('whitebox');
+        });
+
+        takePictureButton.addEventListener('mouseup', function () {
+            takePictureButton.classList.remove('clicked');
+            cameraFeed.classList.remove('whitebox');
+        });
         });
 
         function startVideoCapture() {
