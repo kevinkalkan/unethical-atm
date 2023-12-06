@@ -26,6 +26,8 @@
         <h1>Offers Page</h1>
 
         <p style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">This is the class name from the server: <span id="class_name_placeholder"></span></p>
+        <div id="logo-box" style="width: 190px; height: 110px; background: white"></div>
+
         <button onclick="saveOffers()">Save Offers</button>
         <button onclick="resetSession()">Reset Session</button>
     </main>
@@ -41,6 +43,9 @@
                 // Change text by the class_name
                 if (class_name) {
                     document.getElementById('class_name_placeholder').textContent = class_name;
+
+                    const logoBox = document.getElementById('logo-box');
+                    logoBox.style.background = getBackgroundColorFromClass(class_name)
                 }
             } catch (error) {
                 console.error('Error retrieving class_name from localStorage:', error);
@@ -69,6 +74,22 @@
                 console.error('Error resetting session:', error);
             }
         }
+        function getBackgroundColorFromClass(class_name) {
+        // You can implement your logic to map class names to background colors here
+        // For example, if class_name is 'class1', return 'red'; if class_name is 'class2', return 'blue', and so on.
+        // Replace this logic with your actual mapping.
+
+        // Example mapping:
+        switch (class_name) {
+            case 'Kevin':
+                return 'red';
+            case 'Erica':
+                return 'blue';
+            // Add more cases as needed
+            default:
+                return 'white'; // Default color
+        }
+    }
     </script>
     
 </body>

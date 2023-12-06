@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <title>ATM App</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <div style="width: 190px; height: 110px; background: white"></div>
+        <div style="justify-content: space-between;">
+            <div style="color: #002337; font-size: 48px; font-family: Inter; font-weight: 400; letter-spacing: 14.40px; word-wrap: break-word">ATM</div>
+            <!--- <nav>
+                <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#accounts">Accounts</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav> -->
+        </div>
+    </header>
+
+    <main>
+        <h1 style="color: #002337;">Thank you! Blah blah title</h1>
+        <p id="termsthanks">Hello! Write here thanks + instructions = thanks for the questionnaire + now accept terms&conditions and verify identity in next screen. 
+            Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos. </p>
+        <button onclick="redirectToScreen()" class="btn-primary">Accept & Continue</button>
+    </main>
+    <footer>
+        <p>&copy; 2023 ATM. All rights reserved.</p>
+      </footer>
+    <script>
+        function redirectToScreen() {
+            window.location.href = '/screen';
+    }
+    </script>
+
+</body>
+
+</html>

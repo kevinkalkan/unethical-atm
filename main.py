@@ -41,7 +41,6 @@ def stop_video_capture():
 def index():
     return render_template('index.html')
 
-
 @app.route('/classify', methods=['GET'])
 def classify():
     class_name = start_video_capture()
@@ -59,6 +58,9 @@ def stop():
 def survey():
     return render_template('survey.html')
 
+@app.route('/terms')
+def terms():
+    return render_template('terms.html')
 
 @app.route('/screen')
 def screen():

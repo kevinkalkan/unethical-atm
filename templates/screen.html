@@ -30,12 +30,12 @@
 
     <main>
         <video id="cameraFeed" width="640" height="480" autoplay></video>
-        <button id="takePictureButton" onclick="startVideoCapture()">Take a Picture</button>
-        <button id="confirmButton" onclick="stopVideoCapture()" disabled>Confirm</button>
+        <button id="takePictureButton" class="btn-primary" onclick="startVideoCapture()">Take a Picture</button>
+        <button id="confirmButton" class="btn-primary" onclick="stopVideoCapture()" disabled>Confirm</button>
         <p id="responseText"></p>
     </main>
     <footer>
-        <p>&copy; 2023 ATM Banking. All rights reserved.</p>
+        <p>&copy; 2023 ATM. All rights reserved.</p>
       </footer>
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
