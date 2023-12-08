@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
     <title>Loading Page</title>
     <style>
         #loading {
@@ -18,6 +19,7 @@
             border: 8px solid #f3f3f3;
             border-top: 8px solid #3498db; 
             border-radius: 50%;
+            margin-left: 40%;
             width: 50px;
             height: 50px;
             animation: spin 1s linear infinite;
@@ -32,12 +34,13 @@
         setTimeout(function() {
             document.getElementById('loading').style.display = 'none';
             window.location.href = "/offers";
-        }, 3000); // 3000 milliseconds = 3 seconds
+        }, 300000000); // 3000 milliseconds = 3 seconds
     </script>
 </head>
 <body>
     <header>
-        <div style="width: 190px; height: 110px; background: white"></div>
+        <div style="width: 190px; height: 110px; background: D7E9F1">
+            <img src="/static/number5.png" alt="number5" style="width: 100%; height: 120%; margin-top: -10px;"></div></div>
         <div style="justify-content: space-between;">
             <div style="color: #002337; font-size: 48px; font-family: Inter; font-weight: 400; letter-spacing: 14.40px; word-wrap: break-word">ATM</div>
             <!--- <nav>
@@ -51,11 +54,13 @@
             </nav> -->
         </div>
       </header>
+      <main class="innerbox">
     <div id="loading">
         <div class="loader"></div>
-        <p id="welcome">Calculating...</p>
-        <p id="welcome" style="font-size: 20px; text-align:left ">Your membership will soon be ready.</p>
+        <p id="welcome" style="letter-spacing: 0px; font-family: Abel; font-size: 30px;">Calculating...</p>
+        <p id="welcome" style="font-size: 24px; text-align:left; letter-spacing: 0px; font-family: Abel;">Your membership will soon be ready.</p>
     </div>
+</main>
     <footer>
         <p>&copy; 2023 ATM. All rights reserved.</p>
     </footer>

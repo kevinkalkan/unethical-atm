@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu+Condensed" />
+    <link href='https://fonts.googleapis.com/css?family=Roboto Mono' rel='stylesheet'>
     <title>ATM App</title>
     <style>
         main {
@@ -19,7 +22,8 @@
 
 <body>
     <header>
-        <div style="width: 190px; height: 110px; background: white"></div>
+        <div style="width: 190px; height: 110px; background: D7E9F1">
+            <img src="/static/number3.png" alt="number3" style="width: 100%; height: 120%; margin-top: -10px;"></div></div>
         <div style="justify-content: space-between;">
             <div style="color: #002337; font-size: 48px; font-family: Inter; font-weight: 400; letter-spacing: 14.40px; word-wrap: break-word">ATM</div>
             <!--- <nav>
@@ -34,7 +38,7 @@
         </div>
     </header>
 
-    <main>
+    <main class="innerbox">
         <h1 style="color: #002337;">Thank you! Blah blah title</h1>
         <p id="termsthanks">Hello! Write here thanks + instructions = thanks for the questionnaire + now accept terms&conditions and verify identity in next screen. 
             Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos. </p>
@@ -44,7 +48,7 @@
               </div>
             <div id="scrollable-box">
                 <!-- Your content goes here -->
-                <p style="margin-top: auto;color: #303030;font-size: 16px;font-family: Roboto Mono;font-weight: 400; word-wrap: break-word">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, 
+                <p style="margin-top: auto;color: #303030;font-size: 16px;font-family: Roboto Mono;font-weight: 400; word-wrap: break-word; letter-spacing: -1.5px;">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, 
                     quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, 
                     sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, 
                     sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad</p>

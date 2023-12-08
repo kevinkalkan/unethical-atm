@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.15;
-  
+  background-color: #FBFDFE;
 }
 #surveybody {
   margin-bottom: 10%;
@@ -40,19 +40,21 @@ nav a {
   color: rgb(0, 0, 0);
 }
 
-main {
+.innerbox {
   padding: 20px;
+  margin-left: 5%;
+  margin-right: 5%;
+  background-color: #FFFFFF;
 }
 fieldset {
   border: none;
-  margin-top: 1.5%;
 }
 #welcome {
 color: #002337;
 font-size: 26px;
 font-family: Verdana;
 font-weight: 400;
-letter-spacing: 3.60px;
+letter-spacing: 5px;
 word-wrap: break-word;
 }
 
@@ -66,7 +68,7 @@ letter-spacing: 7.04px;
 word-wrap: break-word;
 }
 #title {
-  margin-top: -20%;
+  color: #002337;
 }
 .hero {
   text-align: center;
@@ -76,11 +78,12 @@ word-wrap: break-word;
 .btn-primary {
   background-color: #0079C4;
     color: white;
-    padding: 30px 40px;
+    padding: 15px 20px;
     text-decoration: none;
-    font-size: 20px;
-    border-radius: 50px;
+    font-size: 26px;
+    border-radius: 36px;
     border: 1px #D9D9D9 solid;
+    font-family: Abel;
 }
 .btn-primary:disabled {
   background-color: #A0A0A0; /* Change the color for disabled state */
@@ -107,20 +110,19 @@ footer {
 }
 
 .hero {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5%;
   justify-content: space-between;
   align-items: center;
-  padding: 50px 20px;
 }
 
 .hero-content {
   margin: auto;
-  width: 50%;
 }
 
 
-.hero-image {
-  width: 60%; /* Adjust the width as needed */
+.hero-image { /* Adjust the width as needed */
   text-align: center;
 }
 
@@ -128,7 +130,6 @@ footer {
   max-width: 100%;
   margin-top: -3%;
   height: auto;
-  border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .class1 {
@@ -151,11 +152,11 @@ footer {
 }
 #nextButton, #submitButton {
   position: absolute;
-  margin-left: 63%; /* Adjust as needed to move the button to the right */
-  margin-top: .5%;
-  display: block;
-  padding: 20px 40px;
-  border-radius: 17px;
+    margin-left: 52%;
+    margin-top: 2%;
+    display: block;
+    padding: 13px 87px;
+    border-radius: 51px;
 }
 
 #submitButton {
@@ -171,14 +172,17 @@ footer {
   margin-bottom: 10px;
 }
 #scrollable-container {
-  width: 300px;
+  width: 321.6px;
   margin-bottom: 10px;
 }
 
 #scrollable-title {
-  background-color: #7B7B7B; /* Dark background color for the title */
+  background-color: #D9D9D9;
+  border: #7B7B7B; /* Dark background color for the title */
   color: #303030; /* Text color for the title */
   padding: 10px; /* Padding for the title */
+  font-family: Abel;
+  font-size: 25px;
 }
 .blackBox {
   width: 800px;

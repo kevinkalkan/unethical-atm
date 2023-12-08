@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
     <title>ATM App</title>
     <style>
 #takePictureButton {
@@ -39,7 +40,8 @@
 
 <body>
     <header>
-        <div style="width: 190px; height: 110px; background: white"></div>
+        <div style="width: 190px; height: 110px; background: D7E9F1">
+            <img src="/static/number4.png" alt="number4" style="width: 100%; height: 120%; margin-top: -10px;"></div></div>
         <div style="justify-content: space-between;">
             <div style="color: #002337; font-size: 48px; font-family: Inter; font-weight: 400; letter-spacing: 14.40px; word-wrap: break-word">ATM</div>
             <!--- <nav>
@@ -54,11 +56,10 @@
         </div>
     </header>
 
-    <main>
+    <main class="innerbox">
         <p id="welcome" style="font-size: 20px;">Take a picture to verify your identity.</p>
         <div id="cameraFeed" class="blackBox"></div>
         <button id="takePictureButton" onclick="startVideoCapture()"></button>
-        <button class="btn-primary"  disabled id="confirmButton" onclick="stopVideoCapture()" disabled>Confirm</button>
         <p id="responseText"></p>
     </main>
     <footer>
@@ -103,15 +104,10 @@
                         };
                         videoElement.play();
                     })
-                    .catch(error => {
-                        console.error('Error accessing the camera:', error);
-                        responseText.textContent = 'Error accessing the camera. Please check your camera permissions.';
-                    });
             } else {
                 console.error('getUserMedia not supported on this browser.');
                 responseText.textContent = 'This browser does not support camera access. Please try a different browser.';
             }
-
             fetch('/classify', {
                 method: 'GET'
             })
@@ -146,12 +142,17 @@
                             responseText.textContent = `I'm a fucking pistachio? But I'm still awesome!`;
                             break;
                     }
-                    confirmButton.removeAttribute('disabled');
+                    // Display a confirmation dialog
+                    window.alert("Your picture has been taken.");
+                    setTimeout(() => {
+                    stopVideoCapture();
+                    }, 2000);
                 })
                 .catch(error => {
                     console.error('Fetch error:', error);
                     responseText.textContent = 'Error during classification. Please try again.';
                 });
+
         }
 
         function stopVideoCapture() {

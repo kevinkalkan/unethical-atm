@@ -9,12 +9,13 @@
 </head>
 <body>
     <header>
-        <div style="width: 190px; height: 110px; background: white"></div>
+        <div style="width: 190px; height: 110px; background: D7E9F1">
+            <img src="/static/number6.png" alt="number6" style="width: 100%; height: 120%; margin-top: -10px;"></div></div>
         <div style="justify-content: space-between;">
             <div style="color: #002337; font-size: 48px; font-family: Inter; font-weight: 400; letter-spacing: 14.40px; word-wrap: break-word">ATM</div>
         </div>
       </header>
-    <main>
+    <main class="innerbox">
         <h1>Offers Page</h1>
 
         <p style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">This is the class name from the server: <span id="class_name_placeholder"></span></p>
@@ -42,18 +43,7 @@
                 console.error('Error retrieving class_name from localStorage:', error);
             }
         });
-
-        function saveOffers() {
-            try {
-                const class_name = document.getElementById('class_name_placeholder').textContent;
-
-                localStorage.setItem('class_name', class_name);
-
-                window.location.href = "{{ url_for('save_offers') }}";
-            } catch (error) {
-                console.error('Error redirecting to save_offers:', error);
-            }
-        }
+  
         function resetSession() {
             try {
                 localStorage.clear();

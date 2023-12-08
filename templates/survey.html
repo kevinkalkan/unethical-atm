@@ -3,11 +3,12 @@
 <head>
   <title>Survey Form</title>
   <meta charset="UTF-8" />
-  <meta viewport" content="width=device-width" initial-scale="1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="pragma" content="no-cache">
   <meta http-equiv="expires" content="0">
   <link href="https://fonts.googleapis.com/css?family=Quicksand|Roboto" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
   <style>
     .question-set {
@@ -18,23 +19,21 @@
       display: block;
     }
     .image-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            width: 100%;
-            max-width: 600px; /* Adjust the max-width as needed */
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            justify-content: space-between; /* Adjust the max-width as needed */
         }
 
         .image-item {
             flex: 0 0 calc(25% - 10px); /* Adjust the width and margin as needed */
-            margin: 10px;
+            margin: 5px;
             cursor: pointer;
             position: relative;
+            transition: filter 0.3s;
         }
 
-        .image-item img {
-            width: 100%;
-            height: auto;
+        .image-item:hover {
+          filter: hue-rotate(180deg);
         }
 
         .selected {
@@ -44,7 +43,8 @@
 </head>
 <body id="surveybody">
   <header>
-    <div style="width: 190px; height: 110px; background: white"></div>
+    <div style="width: 190px; height: 110px; background: D7E9F1">
+      <img src="/static/number2.png" alt="number2" style="width: 100%; height: 120%; margin-top: -10px;"></div></div>
     <div style="justify-content: space-between;">
         <div style="color: #002337; font-size: 48px; font-family: Inter; font-weight: 400; letter-spacing: 14.40px; word-wrap: break-word">ATM</div>
         <!--- <nav>
@@ -58,30 +58,31 @@
         </nav> -->
     </div>
   </header>
+  <main class="innerbox">
   <form id="survey-form" onsubmit="redirectToTerms()" autocomplete="off">
     <div class="question-set active" id="questionSet1">
       <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
       <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">What is your first name?</div>
-        <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid"  class="right input-field"  placeholder="" required>
+        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word; margin-top: 10%;">What is your first name?</div>
+        <input type="text" id="textInput" oninput="validateText(this)" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;; font-size: 20px;"  class="right input-field"  placeholder="" required>
       </div>
       </fieldset>
     <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
         <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
           <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">What is your last name?</div>
-            <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid"  class="right input-field" placeholder="" required>
+            <input type="text" id="textInput" oninput="validateText(this)" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;"  class="right input-field" placeholder="" required>
         </div>
     </fieldset>
     <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
       <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
         <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">What is your CPR number?</div>
-          <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid"  class="right input-field" placeholder=""  required>
+          <input type="number" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;"  class="right input-field" placeholder=""  required>
       </div>
     </fieldset>
     <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
       <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
         <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">What is your e-mail address?</div>
-          <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid"  class="right input-field" placeholder=""  required>
+          <input type="email" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;"  class="right input-field" placeholder=""  required>
       </div>
     </fieldset>
     </div>
@@ -89,26 +90,26 @@
     <div class="question-set" id="questionSet2">
       <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
       <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">What is your date of birth?</div>
-        <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid"  class="right input-field"  placeholder="" required>
+        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word; margin-top: 10%;">What is your date of birth?</div>
+        <input type="date" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;"  class="right input-field"  placeholder="" required>
       </div>
       </fieldset>
     <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
         <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
           <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">What is your home address?</div>
-            <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid"  class="right input-field" placeholder=""  required>
+            <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;"  class="right input-field" placeholder=""  required>
         </div>
     </fieldset>
     <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
       <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
         <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">What is your mobile number?</div>
-          <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid"  class="right input-field" placeholder=""  required>
+          <input type="number" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;"  class="right input-field" placeholder=""  required>
       </div>
     </fieldset>
     <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
       <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
         <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">What is your marital status?</div>
-          <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid"  class="right input-field" placeholder=""  required>
+          <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;"  class="right input-field" placeholder=""  required>
       </div>
     </fieldset>
     </div>
@@ -117,52 +118,150 @@
     <div class="question-set" id="questionSet3">
       <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
       <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">How much money do you expect to earn per month?</div>
-        <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid"  class="right input-field"  placeholder="" required>
+        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word; margin-top: 10%;">How much money do you expect to earn per month?</div>
+        <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;"  class="right input-field"  placeholder="" required>
       </div>
       </fieldset>
     <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
         <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
           <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">How much money do you expect to transfer abroad per month?</div>
-            <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid"  class="right input-field" placeholder=""  required>
+            <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;"  class="right input-field" placeholder=""  required>
         </div>
     </fieldset>
     <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
       <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
         <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">How much money do you expect to receive from abroad per month?</div>
-          <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid"  class="right input-field" placeholder=""  required>
+          <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;"  class="right input-field" placeholder=""  required>
       </div>
     </fieldset>
     <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
       <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">What are your technological assets?</div>
-          <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid"  class="right input-field" placeholder=""  required>
+        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">How many plants do you own?</div>
+          <input type="number" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;"  class="right input-field" placeholder=""  required>
       </div>
     </fieldset>
     </div>
     
     <div class="question-set" id="questionSet4">
       <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
+        <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+          <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word; margin-top: 10%;">Do you recognize any of these plants?</div>
+          <div class="image-container">
+            <div class="image-item" onclick="toggleSelection('plant1')">
+              <img id="plant1" src="/static/plant1.png" alt="Picture 1">
+          </div>
+      
+          <div class="image-item" onclick="toggleSelection('plant2')">
+              <img id="plant2" src="/static/plant2.png" alt="Picture 2">
+          </div>
+      
+          <div class="image-item" onclick="toggleSelection('plant3')">
+              <img id="plant3" src="/static/plant3.png" alt="Picture 3">
+          </div>
+      
+          <div class="image-item" onclick="toggleSelection('plant4')">
+              <img id="plant4" src="/static/plant4.png" alt="Picture 4">
+          </div>
+      
+          <div class="image-item" onclick="toggleSelection('plant5')">
+              <img id="plant5" src="/static/plant5.png" alt="Picture 5">
+          </div>
+      
+          <div class="image-item" onclick="toggleSelection('plant6')">
+              <img id="plant6" src="/static/plant6.png" alt="Picture 6">
+          </div>
+      
+          <div class="image-item" onclick="toggleSelection('plant7')">
+              <img id="plant7" src="/static/plant7.png" alt="Picture 7">
+          </div>
+      
+          <div class="image-item" onclick="toggleSelection('plant8')">
+              <img id="plant8" src="/static/plant8.png" alt="Picture 8">
+          </div>
+          </div>
+          <input type="hidden" id="selectedPictures" name="selectedPictures" value="">
+      
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="question-set" id="questionSet5">
+      <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
       <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">Are you a client of any of these subscription services?</div>
-        <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid"  class="right input-field"  placeholder="" required>
+        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word; margin-top: 10%;">What are your technological assets?</div>
+        <div class="image-container">
+          <div class="image-item" onclick="toggleSelection('picture1')">
+            <img id="picture1" src="/static/device1.jpg" alt="Picture 1">
+        </div>
+    
+        <div class="image-item" onclick="toggleSelection('picture2')">
+            <img id="picture2" src="/static/device2.jpg" alt="Picture 2">
+        </div>
+    
+        <div class="image-item" onclick="toggleSelection('picture3')">
+            <img id="picture3" src="/static/plant3.png" alt="Picture 3">
+        </div>
+    
+        <div class="image-item" onclick="toggleSelection('picture4')">
+            <img id="picture4" src="/static/plant4.png" alt="Picture 4">
+        </div>
+    
+        <div class="image-item" onclick="toggleSelection('picture5')">
+            <img id="picture5" src="/static/plant5.png" alt="Picture 5">
+        </div>
+    
+        <div class="image-item" onclick="toggleSelection('picture6')">
+            <img id="picture6" src="/static/plant6.png" alt="Picture 6">
+        </div>
+    
+        <div class="image-item" onclick="toggleSelection('picture7')">
+            <img id="picture7" src="/static/plant7.png" alt="Picture 7">
+        </div>
+    
+        <div class="image-item" onclick="toggleSelection('picture8')">
+            <img id="picture8" src="/static/plant8.png" alt="Picture 8">
+        </div>
+        </div>
+        <input type="hidden" id="selectedPictures" name="selectedPictures" value="">
+    
+        </div>
       </div>
       </fieldset>
-    <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
-        <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-          <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">How many plants do you own?</div>
-            <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid"  class="right input-field" placeholder=""  required>
-        </div>
-    </fieldset>
+    </div>
+
+    <div class="question-set" id="questionSet6">
     <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
       <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">How much money do you spend on food?</div>
-          <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid"  class="right input-field" placeholder=""  required>
+        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word; margin-top: 10%;">How much money do you spend on food?</div>
+          <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;"  class="right input-field" placeholder=""  required>
       </div>
     </fieldset>
     <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
+      <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word;">How many times have you devoted yourself to someone/something?</div>
+        <input type="number" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;" class="right input-field"  placeholder="" required>
+      </div>
+      </fieldset>
+      <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
+        <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+          <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word;">Do you agree that the nipples are the eyes of the face?</div>
+          <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;"  class="right input-field"  placeholder="" required>
+        </div>
+        </fieldset>
+        <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
+          <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+            <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">What is your set monthly budget for your nipples?</div>
+              <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;"  class="right input-field" placeholder=""  required>
+          </div>
+      </fieldset>
+    </div>
+
+    <div class="question-set" id="questionSet7">
       
-        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">Do you recognize any of these plants?</div>
+      <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
+      
+        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word; margin-top: 10%;">Are you a client of any of these subscription services?</div>
       <div class="image-container">
         <div class="image-item" onclick="toggleSelection('picture1')">
           <img id="picture1" src="/static/plant1.png" alt="Picture 1">
@@ -202,99 +301,62 @@
     </fieldset>
     </div>
 
-    <div class="question-set" id="questionSet5">
-      <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
-      <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">Do you agree that the nipples are the eyes of the face?</div>
-        <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid"  class="right input-field"  placeholder="" required>
-      </div>
-      </fieldset>
-    <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
-        <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-          <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">What is your set monthly budget for your nipples?</div>
-            <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid"  class="right input-field" placeholder=""  required>
-        </div>
-    </fieldset>
+
+    <div class="question-set" id="questionSet8">
     <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
       <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">How do you feel about your own nipples and their visibility?</div>
-          <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid"  class="right input-field" placeholder=""  required>
+        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word; margin-top: 10%;">How do you feel about your own nipples and their visibility?</div>
+          <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;"  class="right input-field" placeholder=""  required>
       </div>
     </fieldset>
     <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
       <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
         <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">How would you rate your hand-eye coordination?</div>
-          <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid" class="right input-field" placeholder=""  required>
+          <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;" class="right input-field" placeholder=""  required>
       </div>
+    </fieldset>
+    <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
+      <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word; margin-top: 10%;">Where do you put your drink when you are working at your computer?</div>
+        <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;" class="right input-field"  placeholder="" required>
+      </div>
+      </fieldset>
+      <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
+        <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+          <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">How many meals do you have per day?</div>
+            <input type="number" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;" class="right input-field" placeholder=""  required>
+        </div>
     </fieldset>
     </div>
 
-    <div class="question-set" id="questionSet6">
-      <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
-      <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">Where do you put your drink when you are working at your computer?</div>
-        <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid" class="right input-field"  placeholder="" required>
-      </div>
-      </fieldset>
-    <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
-        <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-          <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">How many meals do you have per day?</div>
-            <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid" class="right input-field" placeholder=""  required>
-        </div>
-    </fieldset>
+    <div class="question-set" id="questionSet9">     
     <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
       <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">Are you feeling lonely?</div>
-          <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid" class="right input-field" placeholder=""  required>
+        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word; margin-top: 10%;">Are you feeling lonely?</div>
+          <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;" class="right input-field" placeholder=""  required>
       </div>
     </fieldset>
     <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
       <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
         <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">Do you want to be loved by someone?</div>
-          <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid" class="right input-field" placeholder=""  required>
+          <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;" class="right input-field" placeholder=""  required>
       </div>
     </fieldset>
     </div>
     
-    <div class="question-set" id="questionSet7">
-      <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
-      <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">How many times have you devoted yourself to someone/something?</div>
-        <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid" class="right input-field"  placeholder="" required>
-      </div>
-      </fieldset>
-      <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
-        <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-          <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">How many times have you devoted yourself to someone/something?</div>
-          <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid" class="right input-field"  placeholder="" required>
-        </div>
-        </fieldset>
-        <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
-          <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-            <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">How many times have you devoted yourself to someone/something?</div>
-            <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid" class="right input-field"  placeholder="" required>
-          </div>
-          </fieldset>
-          <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
-            <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-              <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">How many times have you devoted yourself to someone/something?</div>
-              <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid" class="right input-field"  placeholder="" required>
-            </div>
-            </fieldset>
-    </div>
 
     <button type="button" id="nextButton" class="btn-primary" onclick="nextQuestionSet()">Next</button>
     <button type="submit" id="submitButton" class="btn-primary">Submit</button>
 
   </form>
-
+</main>
 
   <footer>
     <p>&copy; 2023 ATM. All rights reserved.</p>
   </footer>
   <script>
   let currentQuestionSet = 1;
-  const totalQuestionSets = 7; // Adjust this number based on the total number of question sets
+  const totalQuestionSets = 9; // Adjust this number based on the total number of question sets
 
   function nextQuestionSet() {
     const currentSet = document.getElementById(`questionSet${currentQuestionSet}`);
@@ -317,6 +379,10 @@
       alert('Please answer all questions before proceeding.');
     }
   }
+  function validateText(inputElement) {
+        // Remove any non-text characters
+        inputElement.value = inputElement.value.replace(/[^a-zA-ZğĞüÜıİşŞöÖçÇøØ]/g, '');
+    }
 
   function validateInputs(inputs) {
     // Check if all required inputs are filled
