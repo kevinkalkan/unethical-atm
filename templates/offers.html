@@ -5,53 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-    <title>Offers Page</title>
+    <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu+Condensed" />
+    <title>Membership Page</title>
 </head>
 <body>
     <header>
-        <div style="width: 190px; height: 110px; background: D7E9F1">
-            <img src="/static/number6.png" alt="number6" style="width: 100%; height: 120%; margin-top: -10px;"></div></div>
-        <div style="justify-content: space-between;">
-            <div style="color: #002337; font-size: 48px; font-family: Inter; font-weight: 400; letter-spacing: 14.40px; word-wrap: break-word">ATM</div>
-        </div>
-      </header>
+        <div style="width: 190px;height: 100px; margin: 0 auto;text-align: center;background: #D7E9F1">
+            <img src="/static/number6.png" alt="number6" style="width: 90%; margin-top: -23px;"></div>
+    </header>
     <main class="innerbox">
-        <h1>Offers Page</h1>
-
-        <p style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">This is the class name from the server: <span id="class_name_placeholder"></span></p>
-        <div id="logo-box" style="width: 190px; height: 110px; background: white"></div>
-
+        <div class="image-container">
+            <!-- First image -->
+            <p style="font-family: Abel;" id="welcome">ATM is a community that welcomes change. We strive for a better future for everyone! 
+                At ATM, we take care of you. We cater to our members’ personal needs. Our services are easily accessible and intuitive. Join us now, and enjoy all the benefits! 
+                Take a simple survey to become a member of the community!</p>
+            <img style="display: block;margin: 0 auto;text-align: center;" id="membership" draggable="false" src="/static/placeholder.png" alt="First Image">
+        </div>
+        <button class="btn-primary" style="display: block; margin: 0 auto; text-align: center;" onclick="captureMainScreenshot()">Download</button>
     </main>
     
-    <button class="btn-primary" onclick="captureMainScreenshot()">Save Offers</button>
-    <button class="btn-primary" onclick="resetSession()">Reset Session</button>
+
     <footer>
         <p>&copy; 2023 ATM. All rights reserved.</p>
     </footer>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            try {
-                
-                const class_name = localStorage.getItem('class_name');
-                if (class_name) {
-                    document.getElementById('class_name_placeholder').textContent = class_name;
+    try {
+        const class_name = localStorage.getItem('class_name');
+        if (class_name) {
+            // Get the membership image element
+            const member_offer = document.getElementById('membership');
 
-                    const logoBox = document.getElementById('logo-box');
-                    logoBox.style.background = getBackgroundColorFromClass(class_name)
-                }
-            } catch (error) {
-                console.error('Error retrieving class_name from localStorage:', error);
-            }
-        });
-  
-        function resetSession() {
-            try {
-                localStorage.clear();
-                window.location.href = "{{ url_for('index') }}";
-            } catch (error) {
-                console.error('Error resetting session:', error);
-            }
+            // Set the image source based on the class name
+            const backgroundColor = getBackgroundColorFromClass(class_name);
+            const imagePath = `/static/body_${backgroundColor}.png`;
+            member_offer.src = imagePath;
         }
+    } catch (error) {
+        console.error('Error retrieving class_name from localStorage:', error);
+    }
+});
+  
         function getBackgroundColorFromClass(class_name) {
         switch (class_name) {
             case 'Kevin':

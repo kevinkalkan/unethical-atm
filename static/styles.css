@@ -3,11 +3,9 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.15;
-  background-color: #FBFDFE;
+  background-color: #F4FAFE;
 }
-#surveybody {
-  margin-bottom: 10%;
-}
+
 #termsthanks {
 color: #002337;
 font-size: 28px;
@@ -45,9 +43,28 @@ nav a {
   margin-left: 5%;
   margin-right: 5%;
   background-color: #FFFFFF;
+  min-height: 80vh;
 }
 fieldset {
   border: none;
+}
+.dropdown {
+  width:  759.88px;
+  height: 56px;
+  border-radius: 10px;
+  border: 1px #EBE8E4 solid;
+  font-size: 20px;
+}
+.suffix {
+  position: absolute;
+  right: 10px; /* Adjust the value as needed */
+  top: 50%;
+  transform: translateY(-50%);
+  color: #002337;
+    font-size: 24px;
+    font-family: Abel;
+    font-weight: 400;
+    margin-top: 3%;
 }
 #welcome {
 color: #002337;
@@ -70,17 +87,6 @@ word-wrap: break-word;
 #title {
   color: #002337;
 }
-
-.image-container {
-    text-align: center; /* Center the content horizontally */
-  }
-
-  /* Style for each image */
-.image-container img {
-    width: 50%;
-    height: auto;
-    display: inline-block; /* Align images horizontally */
-  }
 
 .hero {
   text-align: center;
@@ -140,8 +146,6 @@ footer {
 
 .hero-image img {
   max-width: 100%;
-  margin-top: -3%;
-  height: auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .class1 {
