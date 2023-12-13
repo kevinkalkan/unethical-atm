@@ -14,7 +14,7 @@ font-weight: 400;
 word-wrap: break-word;
 text-align: center;
 width: 50%;
-margin-top: 0px;
+margin-top: -20px;
 }
 header {
   background-color: #D7E9F1;
@@ -137,6 +137,7 @@ footer {
 
 .hero-content {
   margin: auto;
+  margin-top: -3%;
 }
 
 

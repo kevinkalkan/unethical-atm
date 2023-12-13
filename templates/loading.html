@@ -32,10 +32,39 @@
         }
     </style>
     <script>
-        setTimeout(function() {
-            document.getElementById('loading').style.display = 'none';
-            window.location.href = "/offers";
-        }, 300000000); // 3000 milliseconds = 3 seconds
+        setTimeout(function () {
+        try {
+            const class_name = localStorage.getItem('class_name');
+            if (class_name) {
+                const colorPage = getColourPageFromClassName(class_name);
+                if (colorPage) {
+                    window.location.href = colorPage;
+                } else {
+                    console.error('No matching color page for class_name:', class_name);
+                }
+            } else {
+                console.error('class_name not found in localStorage');
+            }
+        } catch (error) {
+            console.error('Error during redirection:', error);
+        }
+    }, 3000);
+    function getColourPageFromClassName(class_name) {
+        switch (class_name) {
+            case 'Kevin':
+                return  window.location.href = '/pink';
+            case 'Erica':
+            return  window.location.href = '/green';
+            case 'Halfdan':
+            return  window.location.href = '/gold';
+            case 'Anna':
+            return  window.location.href = '/brown';
+            case 'Erdem':
+            return  window.location.href = '/orange';
+            default:
+                return null; // No matching color page
+        }
+    }
     </script>
 </head>
 <body>

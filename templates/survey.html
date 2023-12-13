@@ -48,12 +48,12 @@
         <img src="/static/number2.png" alt="number2" style="width: 90%; margin-top: -23px;"></div>
 </header>
   <main class="innerbox" style="padding-bottom: 0px;">
-  <form id="survey-form" onsubmit="redirectToTerms()" autocomplete="off">
+  <form id="survey-form" onsubmit="redirectToTerms()" autocomplete="off" method="post">
     <div class="question-set active" id="questionSet1">
       <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
       <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
         <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word; margin-top: 10%;">What is your first name?</div>
-        <input type="text" id="textInput" oninput="validateText(this)" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;; font-size: 20px;"  class="right input-field"  placeholder="" required>
+        <input type="text" id="textInput" name="textInput" oninput="validateText(this)" style="width: 759.88px; height: 56px; border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;" class="right input-field" placeholder="" required>
       </div>
       </fieldset>
     <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
@@ -118,21 +118,21 @@
     </fieldset>
     <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
       <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; position: relative;gap: 8px; display: flex">
-        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word;">How much do you expect to earn per month?</div>
+        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word;">How much do you expect to earn every month this year?</div>
         <input type="number" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;"  class="right input-field"  placeholder="" required>
         <span class="suffix">DKK</span>
       </div>
       </fieldset>
       <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
         <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; position: relative;gap: 8px; display: flex">
-          <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word; ">How much money do you expect to receive from abroad per month?</div>
+          <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word; ">How much money do you expect to receive from abroad every month? </div>
             <input type="number" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;"  class="right input-field" placeholder=""  required>
             <span class="suffix">DKK</span>
         </div>
       </fieldset>
       <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
       <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; position: relative;gap: 8px; display: flex">
-        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">How much money do you expect to transfer abroad per month?</div>
+        <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">How much money do you expect to transfer abroad every month?</div>
           <input type="tnumberext" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;"  class="right input-field" placeholder=""  required>
           <span class="suffix">DKK</span>
       </div>
@@ -246,14 +246,28 @@
       </fieldset>
       <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
         <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-          <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">MISSING ABOUT PLANTS @orsoblando </div>
+          <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">Is your diet mainly plant based?</div>
+          <select class="dropdown" required="required">
+            <option value=""disabled selected>Select an option</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+        </div>
+      </fieldset>
+      <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
+        <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+          <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">Do you tend to fill your emotional voids by resolving to care for other beings?</div>
             <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;"  class="right input-field" placeholder=""  required>
         </div>
       </fieldset>
       <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
         <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-          <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">MISSING ABOUT PLANTS @orsoblando </div>
-            <input type="text" style="width: 759.88px; height: 56px;  border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;"  class="right input-field" placeholder=""  required>
+          <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word">Do you think the diet of superior carnivorous plants would be human-based?</div>
+          <select class="dropdown" required="required">
+            <option value=""disabled selected>Select an option</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
         </div>
       </fieldset>
       </div>
@@ -420,6 +434,16 @@
       </select>
       </div>
       </fieldset>
+      <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
+        <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+          <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word;">Are you left handed or right handed?</div>
+          <select class="dropdown" required="required">
+            <option value=""disabled selected>Select an option</option>
+            <option value="Left">Left handed</option>
+            <option value="Right">Right handed</option>
+        </select>
+        </div>
+        </fieldset>
       <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
         <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
           <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word;">How would you rate your hand-eye coordination?</div>

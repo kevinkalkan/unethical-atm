@@ -1,11 +1,13 @@
-from flask import Flask, render_template, redirect, send_file
+from flask import Flask, render_template, redirect, send_file, request, session, url_for
 from teachable_machine import TeachableMachine
 import time
 import cv2 as cv
 import os
 
+
 app = Flask(__name__)
 app.static_folder = 'static'
+app.config['SECRET_KEY'] = 'kumakumabear'
 
 model = TeachableMachine(model_path="keras_model.h5", labels_file_path="labels.txt")
 
@@ -54,9 +56,20 @@ def stop():
     return redirect('/offers')
 
 
-@app.route('/survey')
+@app.route('/survey', methods=['GET', 'POST'])
 def survey():
-    return render_template('survey.html')
+
+        if request.method == 'POST':
+        # Get the first name from the form data
+            first_name = request.form.get('textInput')
+
+        # Store the first name in the session
+            session['first_name'] = first_name
+
+            redirect(url_for('terms'))
+        
+        return render_template('survey.html')
+
 
 @app.route('/terms')
 def terms():
@@ -74,6 +87,31 @@ def loading():
 def offers():
     class_name = start_video_capture() 
     return render_template('offers.html', class_name=class_name)
+
+@app.route('/brown')
+def brown():
+    first_name = session.get('first_name')
+    return render_template('card_brown.html',first_name=first_name)
+
+@app.route('/gold')
+def gold():
+    first_name = session.get('first_name')
+    return render_template('card_gold.html',first_name=first_name)
+
+@app.route('/pink')
+def pink():
+    first_name = session.get('first_name')
+    return render_template('card_pink.html',first_name=first_name)
+
+@app.route('/orange')
+def orange():
+    first_name = session.get('first_name')
+    return render_template('card_orange.html',first_name=first_name)
+
+@app.route('/green')
+def green():
+    first_name = session.get('first_name')
+    return render_template('card_green.html',first_name=first_name)
 
 @app.route('/save_offers')
 def save_offers():
