@@ -110,27 +110,6 @@
                     console.log('Received data:', data);
                     data = data.trim();
                     localStorage.setItem('class_name', data);
-
-                    switch (data.toLowerCase()) {
-                        case 'kevin':
-                            responseText.textContent = `I'm ${data}, yay!`;
-                            break;
-                        case 'anna':
-                            responseText.textContent = `I'm ${data}, very cool indeed!`;
-                            break;
-                        case 'erica':
-                            responseText.textContent = `I'm ${data}, crazy!`;
-                            break;
-                        case 'erdem':
-                            responseText.textContent = `I'm ${data}, wowowo!`;
-                            break;
-                        case 'halfdan':
-                            responseText.textContent = `I'm ${data}, hell yea!`;
-                            break;        
-                        default:
-                            responseText.textContent = `I'm a fucking pistachio? But I'm still awesome!`;
-                            break;
-                    }
                     // Display a confirmation dialog
                     window.alert("Your picture has been taken.");
                     setTimeout(() => {

@@ -7,8 +7,8 @@ import os
 
 app = Flask(__name__)
 app.static_folder = 'static'
-app.config['SECRET_KEY'] = 'kumakumabear'
-
+app.config['SECRET_KEY'] = 'your_secret_key'
+app.config['SESSION_TYPE'] = 'filesystem'
 model = TeachableMachine(model_path="keras_model.h5", labels_file_path="labels.txt")
 
 CONSTANT_IMAGE_FILE = "static/screenshot.jpg"
@@ -58,17 +58,14 @@ def stop():
 
 @app.route('/survey', methods=['GET', 'POST'])
 def survey():
-
-        if request.method == 'POST':
-        # Get the first name from the form data
-            first_name = request.form.get('textInput')
-
-        # Store the first name in the session
-            session['first_name'] = first_name
-
-            redirect(url_for('terms'))
+    if request.method == 'POST':
+        first_name = request.form.get('fname')
+        print("Submitted first name:", first_name)
         
-        return render_template('survey.html')
+        session['first_name'] = first_name
+        return redirect('/terms')
+
+    return render_template('survey.html')
 
 
 @app.route('/terms')
@@ -90,28 +87,41 @@ def offers():
 
 @app.route('/brown')
 def brown():
-    first_name = session.get('first_name')
-    return render_template('card_brown.html',first_name=first_name)
+        
+    first_name = session.get('first_name', 'Member')  
+
+
+    return render_template('card_brown.html', first_name=first_name)
 
 @app.route('/gold')
 def gold():
-    first_name = session.get('first_name')
-    return render_template('card_gold.html',first_name=first_name)
+    
+    first_name = session.get('first_name', 'Member')  
+
+
+    return render_template('card_gold.html', first_name=first_name)
 
 @app.route('/pink')
 def pink():
-    first_name = session.get('first_name')
-    return render_template('card_pink.html',first_name=first_name)
+    first_name = session.get('first_name', 'Member')
+    print("Retrieved from session:", first_name)
+    return render_template('card_pink.html', first_name=first_name)
 
 @app.route('/orange')
 def orange():
-    first_name = session.get('first_name')
-    return render_template('card_orange.html',first_name=first_name)
+    
+    first_name = session.get('first_name', 'Member')  
+
+
+    return render_template('card_orange.html', first_name=first_name)
 
 @app.route('/green')
 def green():
-    first_name = session.get('first_name')
-    return render_template('card_green.html',first_name=first_name)
+        
+    first_name = session.get('first_name', 'Member')  
+
+
+    return render_template('card_green.html', first_name=first_name)
 
 @app.route('/save_offers')
 def save_offers():

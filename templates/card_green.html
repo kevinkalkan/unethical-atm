@@ -16,9 +16,9 @@
           <img src="/static/number6.png" alt="number6" style="width: 90%; margin-top: -23px;"></div>
           
   </header>
-  <main class="innerbox">
+  <main class="innerbox" style="min-height: 72vh;">
 
-    <div class="div">
+    <div class="div" id="card">
         <div class="div-2">
           <div class="div-3">GREEN MEMBERSHIP</div>
           <div class="div-4"></div>
@@ -433,23 +433,23 @@ try {
 function captureMainScreenshot() {
       try {
           // Select the <main> element
-          var mainElement = document.querySelector('main');
+            var cardElement = document.getElementById('card');
 
           // Use html2canvas to capture the screenshot of <main>
-          html2canvas(mainElement).then(function(canvas) {
-              // Convert the canvas to a data URL
-              var screenshotDataUrl = canvas.toDataURL("image/png");
+            html2canvas(cardElement, { width: cardElement.scrollWidth, height: cardElement.scrollHeight }).then(function(canvas) {
+            // Convert the canvas to a data URL
+            var screenshotDataUrl = canvas.toDataURL("image/png");
 
-              // Create a temporary link element and trigger a download
-              var link = document.createElement('a');
-              link.href = screenshotDataUrl;
-              link.download = 'membership.png';
-              link.click();
-          });
+            // Create a temporary link element and trigger a download
+            var link = document.createElement('a');
+            link.href = screenshotDataUrl;
+            link.download = 'membership.png';
+            link.click();
+        });
       } catch (error) {
           console.error('Error capturing screenshot:', error);
       }
-  };
+  }
   var currentDate = new Date();
   var options = {year: 'numeric', month: 'long', day: 'numeric' };
     var formattedDate = currentDate.toLocaleDateString('en-US', options);

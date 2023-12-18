@@ -48,12 +48,12 @@
         <img src="/static/number2.png" alt="number2" style="width: 90%; margin-top: -23px;"></div>
 </header>
   <main class="innerbox" style="padding-bottom: 0px;">
-  <form id="survey-form" onsubmit="redirectToTerms()" autocomplete="off" method="post">
+  <form id="survey-form" autocomplete="off" action="/survey" method="post">
     <div class="question-set active" id="questionSet1">
       <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
       <div class="sub-group" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
         <div style="color: #002337; font-size: 24px; font-family: Abel; font-weight: 400; word-wrap: break-word; margin-top: 10%;">What is your first name?</div>
-        <input type="text" id="textInput" name="textInput" oninput="validateText(this)" style="width: 759.88px; height: 56px; border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;" class="right input-field" placeholder="" required>
+        <input type="text" id="first_name_input" name="fname" oninput="validateText(this)" style="width: 759.88px; height: 56px; border-radius: 10px; border: 1px #EBE8E4 solid; font-size: 20px;" class="right input-field" placeholder="" required>
       </div>
       </fieldset>
     <fieldset class="fieldset" style="width: 20%;height: 70%;margin-left: auto;margin-right: auto;flex-direction: column;justify-content: flex-start;align-items: flex-start;gap: 25px;">
@@ -576,6 +576,7 @@
             event.preventDefault();
             window.location.href = '/terms';
     }
+
   </script>
   
 </body>
